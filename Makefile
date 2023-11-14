@@ -21,7 +21,7 @@ stop-pihole:
 	docker stop pihole
 
 attach-pihole:
-	docker attach -it pihole
+	docker exec -it pihole bash
 
 clean:
 	rm ./etc-dnsmasq.d -r

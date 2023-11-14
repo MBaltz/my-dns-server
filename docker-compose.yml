@@ -13,8 +13,6 @@ services:
       TZ: 'America/Recife'
       ADLISTS_URL: 'https://v.firebog.net/hosts/lists.php?type=tick'
       WHITELIST_URL: 'https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt'
-      #REGEX_WHITELIST_URL: ''
-      #BLACKLIST_URL: ''
       REGEX_BLACKLIST_URL: 'https://raw.githubusercontent.com/mmotti/pihole-regex/master/regex.list'
       WEBPASSWORD: 'senha-aqui'
     volumes:

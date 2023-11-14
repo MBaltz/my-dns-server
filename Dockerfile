@@ -1,4 +1,5 @@
 # Specify the base image
+# https://github.com/jacklul/pihole-updatelists
 FROM jacklul/pihole:latest
 
 # Create unbound directory to pi-hole config

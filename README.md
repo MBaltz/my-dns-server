@@ -1,44 +1,34 @@
-# Pi-hole with recursive DNS server
+# Pi-hole with Recursive DNS Server
 
-Using [pi-hole](https://pi-hole.net/) with [unbound](https://docs.pi-hole.net/guides/dns/unbound/) to create **my own adblock & high performance DNS server**.
-
-*pt-br:* Usando [pi-hole](https://pi-hole.net/) com [unbound](https://docs.pi-hole.net/guides/dns/unbound/) para criar **meu próprio servidor DNS de alto desempenho e bloqueador de anúncios**.
+Implementação do [Pi-hole](https://pi-hole.net/) com [Unbound](https://docs.pi-hole.net/guides/dns/unbound/) para criar **um servidor DNS de alto desempenho e bloqueador de anúncios e rastreadores personalizado**.
 
 ---
 
 ### Instalação
 
+Para construir o projeto será necessário o *docker* com o *compose*. Então execute:
+
 ```bash
 $ make build-all
 ```
 
-### Atenção
+### Considerações Importantes
 
-#### Portas
+#### Estratégia de Configuração das Portas
 
-Ao configurar o DNS no cliente, atentar-se em dois arquivos: `/etc/systemd/resolved.conf` e `/etc/resolv.conf`.
-Recomendo comentar a definição do DNS no arquivo da `systemd` e utilizar apenas o arquivo `resolv.conf`.
+- **Configuração DNS nos Clientes:** Os arquivos `/etc/systemd/resolved.conf` e `/etc/resolv.conf` são fundamentais. Optei por priorizar o `resolv.conf` após experimentar com as configurações do `systemd`.
+- **Uso da Porta DNS Local:** Enfrentei um desafio com a porta `53` já em uso no host. A solução? Usei a porta `9711` localmente e configurei um redirecionamento NAT inteligente no roteador, mapeando a porta externa `53` para a `9711`. Assim, mantenho a convenção da porta `53` para os clientes, enquanto contorno a limitação local.
+- **Porta do Servidor Web:** Por razões pessoais, escolhi a porta `9705` para o servidor web.
 
-Estou utilizando a porta `9711` na rede local para definição do DNS, mas redireciono via NAT pelo roteador a porta externa `53` para a porta interna `9711`. Então em meus hardwares estão utilizando como servidor DNS meu ip público, que tem como porta para esse serviço o valor padrão de servidor DNS `53`.
+#### Adaptação do Projeto Pi-hole
 
-A motivação para não usar diretamente a porta `53` foi que a máquina host já tinha um servidor local (somente nela) de DNS que fazia uso da porta padrão. Então precisei contar esse problema por questões de incompatibildiade.
-
-Utilizo para o servidor web a porta `9705`, por motivos pessoais.
-
-#### Projeto pi-hole utilizado
-
-Não estou utilizando o projeto original do pi-hole, mas sim uma adaptação fornecido por [@jacklul](https://github.com/jacklul) disponível no repositório [pihole-updatelists](https://github.com/jacklul/pihole-updatelists).
+- Esta implementação é baseada numa versão modificada do Pi-hole, fornecida por [@jacklul](https://github.com/jacklul), disponível em [pihole-updatelists](https://github.com/jacklul/pihole-updatelists).
 
 ---
 
-### Ref.:
+### Referências
 
-https://pi-hole.net/
-
-https://github.com/jacklul/pihole-updatelists
-
-https://docs.pi-hole.net/guides/dns/unbound/
-
-https://youtu.be/FnFtWsZ8IP0
-
-### 
+- [Site Oficial do Pi-hole](https://pi-hole.net/)
+- [Pi-hole Updatelists por jacklul](https://github.com/jacklul/pihole-updatelists)
+- [Documentação do Unbound DNS](https://docs.pi-hole.net/guides/dns/unbound/)
+- [You'r running Pi-Hole wrong!](https://youtu.be/FnFtWsZ8IP0)

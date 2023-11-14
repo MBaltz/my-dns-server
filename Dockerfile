@@ -1,6 +1,7 @@
 # Specify the base image
 FROM jacklul/pihole:latest
 
+# Create unbound directory to pi-hole config
 RUN mkdir -p /etc/unbound/unbound.conf.d/
 
 # Install any necessary dependencies

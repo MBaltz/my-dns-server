@@ -23,6 +23,8 @@ Estou utilizando a porta `9711` na rede local para definição do DNS, mas redir
 
 A motivação para não usar diretamente a porta `53` foi que a máquina host já tinha um servidor local (somente nela) de DNS que fazia uso da porta padrão. Então precisei contar esse problema por questões de incompatibildiade.
 
+Utilizo para o servidor web a porta `9705`, por motivos pessoais.
+
 #### Projeto pi-hole utilizado
 
 Não estou utilizando o projeto original do pi-hole, mas sim uma adaptação fornecido por [@jacklul](https://github.com/jacklul) disponível no repositório [pihole-updatelists](https://github.com/jacklul/pihole-updatelists).
